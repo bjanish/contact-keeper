@@ -198,7 +198,10 @@ img {
   transition: opacity 0.2s ease-in;
   outline: none;
 }
-
+.btn:focus {
+  outline: none !important;
+  outline-offset: none !important;
+}
 .btn-link {
   background: none;
   padding: 0;

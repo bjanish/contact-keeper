@@ -12,3 +12,5 @@ node_modules
 /client/.env.production.local
 
 npm-debug.log*
+
+.gitattributes
