@@ -11,6 +11,7 @@ import {
   UPDATE_CONTACT,
   FILTER_CONTACTS,
   CLEAR_FILTER,
+  CLEAR_CONTACTS,
 } from '../types';
 
 // Create initial state
@@ -66,6 +67,10 @@ const ContactState = (props) => {
       payload: id,
     });
   };
+  // Clear Contacts
+  const clearContacts = () => {
+    dispatch({ type: CLEAR_CONTACTS });
+  };
   // Set current contact
   const setCurrent = (contact) => {
     dispatch({
@@ -113,6 +118,7 @@ const ContactState = (props) => {
         updateContact,
         filterContacts,
         clearFilter,
+        clearContacts,
       }}
     >
       {props.children}

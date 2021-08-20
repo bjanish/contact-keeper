@@ -10,6 +10,12 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import AlertState from './context/alert/AlertState';
 import Alerts from './components/layout/Alerts';
+import setAuthToken from './utils/setAuthToken';
+
+if (localStorage.getItem('token')) {
+  // if this doesn't work, try localStorage.token
+  setAuthToken(localStorage.getItem('token'));
+}
 
 const App = () => {
   return (
@@ -23,9 +29,9 @@ const App = () => {
                 <Alerts />
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  <Route path="/about" component={About} />
-                  <Route path="/register" component={Register} />
-                  <Route path="/login" component={Login} />
+                  <Route exact path="/about" component={About} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/login" component={Login} />
                 </Switch>
               </div>
             </Fragment>
