@@ -39,11 +39,11 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(404).json({ msg: ['User not found'] });
+        return res.status(404).json({ message: ['User not found'] });
       }
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        return res.status(401).json({ msg: ['Invalid password'] });
+        return res.status(401).json({ message: ['Invalid password'] });
       }
       const payload = { user: { id: user._id } };
       jwt.sign(
@@ -54,13 +54,15 @@ router.post(
         },
         (err, token) => {
           if (err) {
-            return res.status(500).json({ msg: ['Error generating token'] });
+            return res
+              .status(500)
+              .json({ message: ['Error generating token'] });
           }
           res.json({ token });
         }
       );
     } catch (err) {
-      return res.status(500).json({ msg: ['Server error'] });
+      return res.status(500).json({ message: ['Server error'] });
     }
   }
 );

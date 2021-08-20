@@ -40,9 +40,11 @@ router.post(
         user: req.user.id,
       });
       const contact = await newContact.save();
-      res.status(201).json(contact);
+
+      res.json(contact);
     } catch (err) {
-      res.status(500).json({ error: err });
+      console.log(err.message);
+      res.status(500).send('Server Error');
     }
   }
 );
