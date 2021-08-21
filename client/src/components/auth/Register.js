@@ -57,7 +57,7 @@ const Register = (props) => {
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="name"
             value={name}
             onChange={onChange}
             required
@@ -68,7 +68,7 @@ const Register = (props) => {
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="email"
             value={email}
             onChange={onChange}
             required
@@ -79,7 +79,7 @@ const Register = (props) => {
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="password"
             value={password}
             onChange={onChange}
             required
@@ -91,7 +91,7 @@ const Register = (props) => {
           <input
             type="password"
             name="confirmPassword"
-            placeholder="Confirm password"
+            placeholder="confirm password"
             value={confirmPassword}
             onChange={onChange}
             required

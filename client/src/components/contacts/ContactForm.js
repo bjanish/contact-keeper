@@ -57,21 +57,21 @@ const ContactForm = () => {
       <input
         type="text"
         name="name"
-        placeholder="Name"
+        placeholder="name"
         value={name}
         onChange={onChange}
       />
       <input
         type="email"
         name="email"
-        placeholder="Email"
+        placeholder="email address"
         value={email}
         onChange={onChange}
       />
       <input
         type="text"
         name="phone"
-        placeholder="Phone"
+        placeholder="phone number"
         value={phone}
         onChange={onChange}
       />
