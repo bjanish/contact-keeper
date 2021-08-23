@@ -10,7 +10,7 @@ const Contact = require('../models/Contact');
 // @access  Private
 router.get('/', auth, async (req, res) => {
   try {
-    const contacts = await Contact.find({ user: req.user._id }).sort({
+    const contacts = await Contact.find({ user: req.user.id }).sort({
       date: -1,
     });
     res.status(200).json(contacts);
@@ -37,7 +37,7 @@ router.post(
         email,
         phone,
         type,
-        user: req.user._id,
+        user: req.user.id,
       });
       const contact = await newContact.save();
 
@@ -69,7 +69,7 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(404).json({ error: 'Contact not found' });
     }
     // Make sure user is the owner of the contact
-    if (contact.user.toString() !== req.user._id) {
+    if (contact.user.toString() !== req.user.id) {
       return res.status(403).json({ error: 'Not authorized' });
     }
     contact = await Contact.findByIdAndUpdate(
@@ -98,12 +98,13 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(404).json({ error: 'Contact not found' });
     }
     // Make sure user is the owner of the contact
-    if (contact.user.toString() !== req.user._id) {
+    if (contact.user.toString() !== req.user.id) {
       res.status(403).json({ error: 'Not authorized' });
     }
     await Contact.findByIdAndRemove(req.params.id);
     res.json({ success: 'Contact deleted' });
   } catch (err) {
+    console.log(err.message);
     res.status(500).json({ error: err });
   }
 });

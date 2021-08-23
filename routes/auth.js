@@ -45,7 +45,7 @@ router.post(
       if (!isMatch) {
         return res.status(401).json({ message: ['Invalid password'] });
       }
-      const payload = { user: { id: user._id } };
+      const payload = { user: { id: user.id } };
       jwt.sign(
         payload,
         config.get('jwtSecret'),
