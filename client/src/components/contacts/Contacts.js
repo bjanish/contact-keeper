@@ -11,12 +11,6 @@ const Contacts = () => {
 
   useEffect(() => {
     getContacts();
-
-    return () => {
-      contacts.forEach((contact) => {
-        contact.isSelected = false;
-      });
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -8,6 +8,7 @@ import {
   FILTER_CONTACTS,
   CLEAR_FILTER,
   CONTACT_ERROR,
+  CLEAR_CONTACTS,
 } from '../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -16,14 +17,14 @@ export default (state, action) => {
     case ADD_CONTACT:
       return {
         ...state,
-        contacts: [...state.contacts, action.payload],
+        contacts: [action.payload, ...state.contacts],
         loading: false,
       };
     case DELETE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.filter(
-          (contact) => contact.id !== action.payload
+          (contact) => contact._id !== action.payload
         ),
         loading: false,
       };
@@ -47,11 +48,12 @@ export default (state, action) => {
       return {
         ...state,
         contacts: state.contacts.map((contact) => {
-          if (contact._id === action.payload.id) {
+          if (contact._id === action.payload._id) {
             return action.payload;
           }
           return contact;
         }),
+        loading: false,
       };
     case FILTER_CONTACTS:
       return {
@@ -61,6 +63,14 @@ export default (state, action) => {
           //  const regex = new RegExp(`${action.payload}`, 'gi');
           return contact.name.match(regex) || contact.email.match(regex);
         }),
+      };
+    case CLEAR_CONTACTS:
+      return {
+        ...state,
+        contacts: null,
+        filtered: null,
+        error: null,
+        current: null,
       };
     case CLEAR_FILTER:
       return {
